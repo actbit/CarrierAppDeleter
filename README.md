@@ -1,1 +1,2 @@
 # CareerAppDeleter
+CareerAppDeleterは[竹林人間](https://github.com/Aoi-Developer/)さんの[remove-career-app](https://github.com/Aoi-Developer/remove-career-app/releases/tag/windows)の機能をWindowsのGUIで実装し機能を追加したものです。
