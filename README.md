@@ -17,6 +17,10 @@ Windows8以上の.NET Framework 4.7.2がインストールされている環境。
 なお、本ソフトで発生した故障や損害につきましては開発者は責任を負いかねます。
 
 ## 実行方法
+まず、[こちら](https://github.com/binary-number/CarrierAppDeleter/releases)のリンクにアクセスしCarrierAppDeleter.zipの最新版をダウンロードします。
+ダウンロードしたCarrierAppDeleter.zipを解凍し、フォルダ内にあるCarrierAppDeleter.exeファイルを実行してください。
+本ソフトは署名がないため以下のような画面が表示されますが、詳細を押すと実行というボタンが表示されるのでそちらを押して実行してください。
+![署名なし](https://github.com/binary-number/CarrierAppDeleter/Image1)
 
 ## Build方法
 Visual Studioで.slnファイルを開きBuildしてください。
