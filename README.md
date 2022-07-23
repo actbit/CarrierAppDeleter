@@ -2,7 +2,7 @@
 CarrierAppDeleterは[竹林人間](https://github.com/Aoi-Developer/)さんの[Remove-career-app](https://github.com/Aoi-Developer/remove-career-app)の機能をWindowsのGUIで独自実装し機能を追加したものです。
 ## 対応環境
 Windows8以上の.NET Framework 4.7.2がインストールされている環境。
-
+(おそらくWindows7でも動作しますが、確証はできません。)
 ARM系CPUでの動作確認はしておりません。
 ### テスト環境
 |項目|値|
