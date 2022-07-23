@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarrierAppDeleter"
         mc:Ignorable="d"
-        Title="CarrierAppDeleter" Height="512" Width="412">
+        Title="CarrierAppDeleter" Height="512" Width="412" Initialized="Window_Initialized">
     <Grid>
         <Label Content="デバイス" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DeviceComboBox" Margin="10,41,10,0" VerticalAlignment="Top"/>
         <Button Content="検索" HorizontalAlignment="Left" Margin="62,13,0,0" VerticalAlignment="Top" Click="Button_Click"/>
         <Label Content="アプリ" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top"/>
-        <Button Content="検索" HorizontalAlignment="Left" Margin="52,71,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+        <Button Content="検索" Margin="0,69,11,0" VerticalAlignment="Top" Click="Button_Click_2" HorizontalAlignment="Right" Width="28"/>
         <ScrollViewer Margin="10,99,10,197" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="AppList"/>
         </ScrollViewer>
-        <Button Content="防災系アプリを除外する" HorizontalAlignment="Left" Margin="10,0,0,172" VerticalAlignment="Bottom" Click="Button_Click_3"/>
-        <Button Content="Wi-Fiアプリを除外する" HorizontalAlignment="Left" Margin="134,0,0,172" VerticalAlignment="Bottom" Click="Button_Click_4"/>
+        <Button x:Name="DisasterButton" Content="防災系アプリを除外する" HorizontalAlignment="Left" Margin="10,0,0,172" VerticalAlignment="Bottom" Click="Button_Click_3"/>
+        <Button x:Name="WiFiButton" Content="Wi-Fiアプリを除外する" HorizontalAlignment="Left" Margin="134,0,0,172" VerticalAlignment="Bottom" Click="Button_Click_4"/>
         <Button x:Name="DeleteButton" Content="削除を実行" HorizontalAlignment="Right" Margin="0,0,11,147" VerticalAlignment="Bottom" Click="Button_Click_7"/>
         <Label Content="ログ" HorizontalAlignment="Left" Margin="10,0,0,116" VerticalAlignment="Bottom"/>
         <TextBox Name="Log" Margin="10,0,10,25" TextWrapping="Wrap" Text="" VerticalScrollBarVisibility="Auto" Height="86" VerticalAlignment="Bottom"/>
@@ -24,6 +24,11 @@
         <Button Content="すべて選択" HorizontalAlignment="Left" Margin="250,0,0,172" VerticalAlignment="Bottom" Click="Button_Click_5"/>
         <Button Content="選択解除" HorizontalAlignment="Left" Margin="312,0,0,172" VerticalAlignment="Bottom" Click="Button_Click_6"/>
         <ProgressBar x:Name="ProgressBar1" Height="10" Margin="10,0,10,10" VerticalAlignment="Bottom"/>
+        <Button x:Name="DisableButton" Content="無効化を実行" HorizontalAlignment="Right" Margin="0,0,10,147" VerticalAlignment="Bottom" Width="75" Click="Button_Click_8"/>
+        <RadioButton x:Name="R_Uninstall" Content="アンインストール"  HorizontalAlignment="Right" Margin="0,74,252,0" VerticalAlignment="Top" Checked="R_Uninstall_Checked"/>
+        <RadioButton x:Name="R_Disabled" Content="無効化" HorizontalAlignment="Left" Margin="157,74,0,0" VerticalAlignment="Top" Checked="R_Disabled_Checked"/>
+        <RadioButton x:Name="R_Repair" Content="復元" HorizontalAlignment="Left" Margin="217,74,0,0" VerticalAlignment="Top" Checked="R_Repair_Checked"/>
+        <Button x:Name="RepairButton" Content="復元を実行" HorizontalAlignment="Right" Margin="0,0,10,147" VerticalAlignment="Bottom" Width="75" Click="RepairButton_Click"/>
 
 
 
