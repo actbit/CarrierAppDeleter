@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarrierAppDeleter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="512" Width="412">
+        Title="CarrierAppDeleter" Height="512" Width="412">
     <Grid>
         <Label Content="デバイス" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="DeviceComboBox" Margin="10,41,10,0" VerticalAlignment="Top"/>
