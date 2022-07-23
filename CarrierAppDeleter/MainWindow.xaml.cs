@@ -53,9 +53,11 @@ namespace CarrierAppDeleter
             var t =Process.Start(processStartInfo);
             t.WaitForExit();
             ProcessStartInfo processStartInfo1 = new ProcessStartInfo(path, "shell exit") { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = false, RedirectStandardError = false };
+            t.Dispose();
 
-            t=Process.Start(processStartInfo1);
+            t = Process.Start(processStartInfo1);
             t.WaitForExit();
+            t.Dispose();
             InitializeComponent();
         }
 
@@ -92,6 +94,15 @@ namespace CarrierAppDeleter
             {
                 Log.ScrollToEnd();
             }));
+            try
+            {
+                ((Process)sender).Dispose();
+
+            }
+            catch
+            {
+
+            }
         }
 
         private void Process_ErrorDataReceived(object sender, DataReceivedEventArgs e)
@@ -236,12 +247,12 @@ namespace CarrierAppDeleter
                 if ((bool)((CheckBox)AppList.Children[i]).IsChecked)
                 {
                     RemoveApps.Add(((CheckBox)AppList.Children[i]).Content.ToString());
-                    RaS += ((CheckBox)AppList.Children[i]).Content.ToString()+"\n";
+                    
                 }
             }
             if (RemoveApps.Count > 0)
             {
-                if(MessageBox.Show("以下のアプリが削除されますが実行しますか\n\n" + RaS, "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
+                if(MessageBox.Show(RemoveApps.Count+"個のアプリが削除されますが実行しますか\n\n", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) != MessageBoxResult.Yes)
                 {
                     return;
                 }
