@@ -25,9 +25,9 @@
         <Button Content="選択解除" HorizontalAlignment="Left" Margin="312,0,0,172" VerticalAlignment="Bottom" Click="Button_Click_6"/>
         <ProgressBar x:Name="ProgressBar1" Height="10" Margin="10,0,10,10" VerticalAlignment="Bottom"/>
         <Button x:Name="DisableButton" Content="無効化を実行" HorizontalAlignment="Right" Margin="0,0,10,147" VerticalAlignment="Bottom" Width="75" Click="Button_Click_8"/>
-        <RadioButton x:Name="R_Uninstall" Content="アンインストール"  HorizontalAlignment="Right" Margin="0,74,252,0" VerticalAlignment="Top" Checked="R_Uninstall_Checked"/>
-        <RadioButton x:Name="R_Disabled" Content="無効化" HorizontalAlignment="Left" Margin="157,74,0,0" VerticalAlignment="Top" Checked="R_Disabled_Checked"/>
-        <RadioButton x:Name="R_Repair" Content="復元" HorizontalAlignment="Left" Margin="217,74,0,0" VerticalAlignment="Top" Checked="R_Repair_Checked"/>
+        <RadioButton x:Name="R_Uninstall" Content="削除"  HorizontalAlignment="Right" Margin="0,74,290,0" VerticalAlignment="Top" Checked="R_Uninstall_Checked"/>
+        <RadioButton x:Name="R_Disabled" Content="無効化" HorizontalAlignment="Left" Margin="119,74,0,0" VerticalAlignment="Top" Checked="R_Disabled_Checked"/>
+        <RadioButton x:Name="R_Repair" Content="復元" HorizontalAlignment="Left" Margin="179,74,0,0" VerticalAlignment="Top" Checked="R_Repair_Checked"/>
         <Button x:Name="RepairButton" Content="復元を実行" HorizontalAlignment="Right" Margin="0,0,10,147" VerticalAlignment="Bottom" Width="75" Click="RepairButton_Click"/>
 
 

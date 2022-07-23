@@ -138,16 +138,15 @@ namespace CarrierAppDeleter
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
         }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        void loadList()
         {
             AppList.Children.Clear();
             var path = System.IO.Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "platform-tools", "adb.exe");
             Process process = new Process();
-            string addWord="";
-            if(DeviceComboBox.Items.Count > 0&& DeviceComboBox.SelectedIndex!=-1)
+            string addWord = "";
+            if (DeviceComboBox.Items.Count > 0 && DeviceComboBox.SelectedIndex != -1)
             {
-                addWord="-s " + DeviceComboBox.SelectedItem.ToString()+ " ";
+                addWord = "-s " + DeviceComboBox.SelectedItem.ToString() + " ";
             }
             string addWord2 = "";
             if (R_Disabled.IsChecked == true)
@@ -163,7 +162,7 @@ namespace CarrierAppDeleter
                 process.EnableRaisingEvents = true;
 
                 process.Exited += Process_Exited;
-                
+
                 process.Start();
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
@@ -171,7 +170,7 @@ namespace CarrierAppDeleter
             else
             {
                 Task task = new Task(() =>
-                { 
+                {
                     ProcessStartInfo pf = new ProcessStartInfo(path, addWord + "shell pm list package -s softbank kddi auone docomo ntt rakuten yahoo") { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
                     var t = Process.Start(pf);
                     t.WaitForExit();
@@ -193,7 +192,7 @@ namespace CarrierAppDeleter
                     t.WaitForExit();
                     readword = t.StandardOutput.ReadToEnd();
                     string[] all = readword.Replace("package:", "").Replace("\r", "").Split('\n');
-                    
+
                     this.Dispatcher.Invoke((Action)(() =>
                     {
                         for (int i = 0; i < all.Length; i++)
@@ -211,6 +210,10 @@ namespace CarrierAppDeleter
                 });
                 task.Start();
             }
+        }
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            loadList();
         }
 
         private void Process_ErrorDataReceived1(object sender, DataReceivedEventArgs e)
@@ -362,6 +365,8 @@ namespace CarrierAppDeleter
 
                     DisableButton.Content = "削除を実行";
                     ProgressBar1.Value = 0;
+
+                    loadList();
                 }));
 
                 //    if (backup)
@@ -558,6 +563,8 @@ namespace CarrierAppDeleter
 
                     DisableButton.Content = "無効化を実行";
                     ProgressBar1.Value = 0;
+                    loadList();
+
                 }));
 
 
@@ -687,6 +694,8 @@ namespace CarrierAppDeleter
 
                     RepairButton.Content = "復元を実行";
                     ProgressBar1.Value = 0;
+                    loadList();
+
                 }));
 
 
