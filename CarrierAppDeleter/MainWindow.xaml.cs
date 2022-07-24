@@ -361,7 +361,7 @@ namespace CarrierAppDeleter
                     }
                     DeleteButton.IsEnabled = true;
 
-                    DisableButton.Content = "削除を実行";
+                    DeleteButton.Content = "削除を実行";
                     ProgressBar1.Value = 0;
 
                     loadList();
