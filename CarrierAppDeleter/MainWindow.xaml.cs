@@ -306,7 +306,6 @@ namespace CarrierAppDeleter
             {
                 return;
             }
-            DisableButton.IsEnabled = false;
 
             DeleteButton.IsEnabled = false;
             DeleteButton.Content = "実行中";
@@ -361,7 +360,6 @@ namespace CarrierAppDeleter
 
                     }
                     DeleteButton.IsEnabled = true;
-                    DisableButton.IsEnabled = true;
 
                     DisableButton.Content = "削除を実行";
                     ProgressBar1.Value = 0;
@@ -505,7 +503,6 @@ namespace CarrierAppDeleter
             }
 
             DisableButton.IsEnabled = false;
-            DeleteButton.IsEnabled = false;
 
             DisableButton.Content = "実行中";
             var path = System.IO.Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).FullName, "platform-tools", "adb.exe");
@@ -558,7 +555,6 @@ namespace CarrierAppDeleter
                         MessageBox.Show((ProgressBar1.Maximum - ProgressBar1.Value) + "個のアプリを無効化できませんでした。");
 
                     }
-                    DeleteButton.IsEnabled = true;
                     DisableButton.IsEnabled = true;
 
                     DisableButton.Content = "無効化を実行";
@@ -575,8 +571,8 @@ namespace CarrierAppDeleter
         private void R_Repair_Checked(object sender, RoutedEventArgs e)
         {
             RepairButton.Visibility = Visibility.Visible;
-            DeleteButton.Visibility = Visibility.Collapsed;
-            DisableButton.Visibility = Visibility.Collapsed;
+            DeleteButton.Visibility = Visibility.Hidden;
+            DisableButton.Visibility = Visibility.Hidden;
             AppList.Children.Clear();
             WiFiButton.Content = "Wi-Fiアプリを追加する";
             DisasterButton.Content = "防災系アプリを追加する";
@@ -587,8 +583,8 @@ namespace CarrierAppDeleter
         private void R_Uninstall_Checked(object sender, RoutedEventArgs e)
         {
             DeleteButton.Visibility = Visibility.Visible;
-            DisableButton.Visibility = Visibility.Collapsed;
-            RepairButton.Visibility = Visibility.Collapsed;
+            DisableButton.Visibility = Visibility.Hidden;
+            RepairButton.Visibility = Visibility.Hidden;
             AppList.Children.Clear();
             CheckAdd = false;
             DisasterButton.Content = "防災系アプリを除外する";
@@ -599,8 +595,8 @@ namespace CarrierAppDeleter
         private void R_Disabled_Checked(object sender, RoutedEventArgs e)
         {
             DisableButton.Visibility = Visibility.Visible;
-            DeleteButton.Visibility = Visibility.Collapsed;
-            RepairButton.Visibility = Visibility.Collapsed;
+            DeleteButton.Visibility = Visibility.Hidden;
+            RepairButton.Visibility = Visibility.Hidden;
             AppList.Children.Clear();
             WiFiButton.Content = "Wi-Fiアプリを除外する";
             DisasterButton.Content = "防災系アプリを除外する";
