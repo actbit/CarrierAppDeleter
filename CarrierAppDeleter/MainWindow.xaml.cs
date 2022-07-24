@@ -138,6 +138,8 @@ namespace CarrierAppDeleter
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
         }
+
+        string[] carrier = new string[] { "kddi", "auone", "docomo", "ntt", "rakuten", "yahoo", "softbank" };
         void loadList()
         {
             AppList.Children.Clear();
@@ -155,7 +157,7 @@ namespace CarrierAppDeleter
             }
             if (!R_Repair.IsChecked == true)
             {
-                process.StartInfo = new ProcessStartInfo(path, addWord + "shell pm list package -s " + addWord2 + "softbank kddi auone docomo ntt rakuten yahoo") { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
+                process.StartInfo = new ProcessStartInfo(path, addWord + "shell pm list package -s " + addWord2) { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
 
                 process.OutputDataReceived += Process_OutputDataReceived1;
                 process.ErrorDataReceived += Process_ErrorDataReceived1;
@@ -171,42 +173,62 @@ namespace CarrierAppDeleter
             {
                 Task task = new Task(() =>
                 {
-                    ProcessStartInfo pf = new ProcessStartInfo(path, addWord + "shell pm list package -s softbank kddi auone docomo ntt rakuten yahoo") { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
-                    var t = Process.Start(pf);
-                    t.WaitForExit();
-
-                    string readword = t.StandardOutput.ReadToEnd();
-                    string[] installed = readword.Replace("package:", "").Replace("\r", "").Split('\n');
-
-                    this.Dispatcher.Invoke((Action)(() =>
+                    try
                     {
-                        Log.Text += readword;
-                        Log.Text += t.StandardError.ReadToEnd();
-                        Log.ScrollToEnd();
 
-                    }));
-                    t.Dispose();
-
-                    pf = new ProcessStartInfo(path, addWord + "shell pm list package -s -u softbank kddi auone docomo ntt rakuten yahoo") { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
-                    t = Process.Start(pf);
-                    t.WaitForExit();
-                    readword = t.StandardOutput.ReadToEnd();
-                    string[] all = readword.Replace("package:", "").Replace("\r", "").Split('\n');
-
-                    this.Dispatcher.Invoke((Action)(() =>
-                    {
-                        for (int i = 0; i < all.Length; i++)
+                        for (int i = 0; i < carrier.Length; i++)
                         {
-                            if (!installed.Contains(all[i]))
+                            ProcessStartInfo pf = new ProcessStartInfo(path, addWord + "shell pm list package -s " + carrier[i]) { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
+
+                            var t = Process.Start(pf);
+                            t.WaitForExit();
+
+                            string readword = t.StandardOutput.ReadToEnd();
+                            if(string.IsNullOrEmpty(readword) || string.IsNullOrWhiteSpace(readword))
                             {
-                                AppList.Children.Add(new CheckBox() { Content = all[i], IsChecked = false });
+                                continue;
                             }
+                            string[] installed = readword.Replace("package:", "").Replace("\r", "").Split('\n');
+                           
+                            this.Dispatcher.Invoke((Action)(() =>
+                            {
+                                Log.Text += readword;
+                                Log.Text += t.StandardError.ReadToEnd();
+                                Log.ScrollToEnd();
+
+                            }));
+                            t.Dispose();
+                            pf = new ProcessStartInfo(path, addWord + "shell pm list package -s -u " + carrier[i]) { UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true };
+
+                            t = Process.Start(pf);
+                            t.WaitForExit();
+                            readword = t.StandardOutput.ReadToEnd();
+                            string[] all = readword.Replace("package:", "").Replace("\r", "").Split('\n');
+
+                            this.Dispatcher.Invoke((Action)(() =>
+                            {
+                                for (int k = 0; k < all.Length; k++)
+                                {
+                                    if (!installed.Contains(all[k])&&!string.IsNullOrEmpty(all[k])&&!string.IsNullOrWhiteSpace(all[k]))
+                                    {
+                                        AppList.Children.Add(new CheckBox() { Content = all[k], IsChecked = false });
+
+                                    }
+                                }
+                                Log.Text += readword;
+                                Log.Text += t.StandardError.ReadToEnd();
+                                Log.ScrollToEnd();
+                            }));
+                            t.Dispose();
                         }
-                        Log.Text += readword;
-                        Log.Text += t.StandardError.ReadToEnd();
-                        Log.ScrollToEnd();
-                    }));
-                    t.Dispose();
+                    }
+                    catch
+                    {
+
+                    }
+                
+
+
                 });
                 task.Start();
             }
@@ -233,7 +255,20 @@ namespace CarrierAppDeleter
             {
                 this.Dispatcher.Invoke((Action)(() =>
                 {
-                    AppList.Children.Add(new CheckBox() { Content = e.Data.Replace("package:",""),IsChecked=true });
+                    bool add = false;
+                    for(int i = 0;i< carrier.Length; i++)
+                    {
+                        if(e.Data.Contains(carrier[i]))
+                        {
+                            add = true;
+                            break;
+                        }
+                    }
+                    if (add)
+                    {
+                        AppList.Children.Add(new CheckBox() { Content = e.Data.Replace("package:", ""), IsChecked = true });
+
+                    }
                     Log.Text += e.Data + "\n";
                 }));
             }
