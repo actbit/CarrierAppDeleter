@@ -10,9 +10,11 @@ CarrierAppDeleterは[竹林人間](https://github.com/Aoi-Developer/)さんの[R
 - platform-toolsの自動導入([Remove-career-app](https://github.com/Aoi-Developer/remove-career-app)のLinux・Mac版には存在します)
 
 ## 対応環境
-Windows8以上の.NET Framework 4.7.2がインストールされている環境。
+Windows8以上の.NET Framework 4.7.2がインストールされている環境
 
 (おそらくWindows7でも動作しますが、確証はできません。)
+
+adbドライバの導入済みの環境
 
 ARM系CPUでの動作確認はしておりません。
 ### テスト環境
